@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50AB5B312C91BD2F0056A82F /* PhotosEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */; };
-		50AB5B332C91BD2F0056A82F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B322C91BD2F0056A82F /* ContentView.swift */; };
+		50AB5B332C91BD2F0056A82F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B322C91BD2F0056A82F /* LoginView.swift */; };
 		50AB5B352C91BD310056A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB5B342C91BD310056A82F /* Assets.xcassets */; };
 		50AB5B382C91BD310056A82F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB5B372C91BD310056A82F /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		50AB5B2D2C91BD2F0056A82F /* PhotosEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosEditorApp.swift; sourceTree = "<group>"; };
-		50AB5B322C91BD2F0056A82F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		50AB5B322C91BD2F0056A82F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		50AB5B342C91BD310056A82F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50AB5B372C91BD310056A82F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */,
-				50AB5B322C91BD2F0056A82F /* ContentView.swift */,
+				50AB5B322C91BD2F0056A82F /* LoginView.swift */,
 				50AB5B342C91BD310056A82F /* Assets.xcassets */,
 				50AB5B362C91BD310056A82F /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50AB5B332C91BD2F0056A82F /* ContentView.swift in Sources */,
+				50AB5B332C91BD2F0056A82F /* LoginView.swift in Sources */,
 				50AB5B312C91BD2F0056A82F /* PhotosEditorApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
