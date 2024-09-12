@@ -36,13 +36,11 @@ struct LoginView: View {
             Button("Login with Google") {
             }
             
-            Button("Восстановить пароль") {
+            Button("Forgot password?") {
             }
-            
-            
-            if let errorMessage {
-                Text(errorMessage).foregroundColor(.red)
-            }
+//            .alert(item: $viewModel.errorMessage) { error in
+//                Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
+//            }
         }
     }
 }
