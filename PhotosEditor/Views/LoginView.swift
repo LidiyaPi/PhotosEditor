@@ -8,42 +8,44 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @State private var errorMessage: String?
+    
+    @StateObject private var viewModel = LoginViewModel()
     
     var body: some View {
         VStack(spacing: 16) {
-            TextField("Email", text: $email)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Email", text: $viewModel.email)
+                .border(.primary)
                 .keyboardType(.emailAddress)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             
-            SecureField("Password", text: $password)
+            
+            SecureField("Password", text: $viewModel.password)
+                .border(.primary)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
             
             Button("Login") {
-                if !email.isEmpty,
-                   email == "1",
-                   !password.isEmpty,
-                   email == "1" {
-                    print("Переходим на другой экран")
-                } else {
-                    errorMessage = "DASDASDA"
-                }
+                viewModel.login()
+                print("Переходим на другой экран")
             }
+            
             Button("Login with Google") {
             }
             
             Button("Forgot password?") {
+                viewModel.showPasswordRecovery()
             }
-//            .alert(item: $viewModel.errorMessage) { error in
-//                Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
-//            }
+            .padding()
         }
+
+        .alert(item: $viewModel.errorMessage) { error in
+               Alert(title: Text(error.title), message: Text(error.message), dismissButton: .default(Text("OK")))
+           }
     }
 }
+
+
 
 #Preview {
     LoginView()

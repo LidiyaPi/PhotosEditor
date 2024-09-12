@@ -6,16 +6,12 @@
 //
 
 import SwiftUI
-import GoogleSignIn
 
 @main
 struct PhotosEditorApp: App {
     var body: some Scene {
         WindowGroup {
             LoginView()
-//                .onOpenURL { url in
-//                    GIDSignIn.sharedInstance.handle(url)
-//                }
         }
     }
 }

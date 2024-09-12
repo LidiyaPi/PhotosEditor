@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5072CEAF2C92CEEC00238016 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072CEAE2C92CEEC00238016 /* RegistrationView.swift */; };
+		5072CEB12C92DE9800238016 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5072CEB02C92DE9800238016 /* RegistrationViewModel.swift */; };
 		50AB5B312C91BD2F0056A82F /* PhotosEditorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */; };
 		50AB5B332C91BD2F0056A82F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B322C91BD2F0056A82F /* LoginView.swift */; };
 		50AB5B352C91BD310056A82F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50AB5B342C91BD310056A82F /* Assets.xcassets */; };
@@ -40,9 +42,12 @@
 		50AB5B792C92954E0056A82F /* FirebaseVertexAI-Preview in Frameworks */ = {isa = PBXBuildFile; productRef = 50AB5B782C92954E0056A82F /* FirebaseVertexAI-Preview */; };
 		50AB5B7C2C92A4EF0056A82F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B7B2C92A4EF0056A82F /* User.swift */; };
 		50AB5B7F2C92A5800056A82F /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B7E2C92A5800056A82F /* Photo.swift */; };
+		50AB5B822C92A7770056A82F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B812C92A7770056A82F /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5072CEAE2C92CEEC00238016 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		5072CEB02C92DE9800238016 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		50AB5B2D2C91BD2F0056A82F /* PhotosEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotosEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosEditorApp.swift; sourceTree = "<group>"; };
 		50AB5B322C91BD2F0056A82F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -52,6 +57,7 @@
 		50AB5B472C91D8E80056A82F /* GoogleSignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInService.swift; sourceTree = "<group>"; };
 		50AB5B7B2C92A4EF0056A82F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		50AB5B7E2C92A5800056A82F /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		50AB5B812C92A7770056A82F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +115,9 @@
 		50AB5B2F2C91BD2F0056A82F /* PhotosEditor */ = {
 			isa = PBXGroup;
 			children = (
-				50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */,
 				50AB5B7A2C92A4690056A82F /* Models */,
 				50AB5B492C928AE40056A82F /* Views */,
+				50AB5B802C92A7100056A82F /* View Models */,
 				50AB5B4A2C928B000056A82F /* Services */,
 				50AB5B342C91BD310056A82F /* Assets.xcassets */,
 				50AB5B362C91BD310056A82F /* Preview Content */,
@@ -132,6 +138,8 @@
 			children = (
 				50AB5B322C91BD2F0056A82F /* LoginView.swift */,
 				50AB5B3E2C91BFC50056A82F /* ForgotPasswordView.swift */,
+				5072CEAE2C92CEEC00238016 /* RegistrationView.swift */,
+				50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +159,15 @@
 				50AB5B7E2C92A5800056A82F /* Photo.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		50AB5B802C92A7100056A82F /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				50AB5B812C92A7770056A82F /* LoginViewModel.swift */,
+				5072CEB02C92DE9800238016 /* RegistrationViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,11 +272,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				50AB5B7F2C92A5800056A82F /* Photo.swift in Sources */,
+				5072CEB12C92DE9800238016 /* RegistrationViewModel.swift in Sources */,
 				50AB5B332C91BD2F0056A82F /* LoginView.swift in Sources */,
 				50AB5B482C91D8E80056A82F /* GoogleSignInService.swift in Sources */,
 				50AB5B3F2C91BFC50056A82F /* ForgotPasswordView.swift in Sources */,
 				50AB5B7C2C92A4EF0056A82F /* User.swift in Sources */,
 				50AB5B312C91BD2F0056A82F /* PhotosEditorApp.swift in Sources */,
+				50AB5B822C92A7770056A82F /* LoginViewModel.swift in Sources */,
+				5072CEAF2C92CEEC00238016 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

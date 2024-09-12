@@ -26,13 +26,13 @@ struct ForgotPasswordView: View {
             
             Button("Отправить ссылку на восстановление") {
                 resetPassword(email: email)
-       
+                
             }
             .padding()
         }
-//        .alert(item: $successMessage) { message in
-//                 Alert(title: Text("Success"), message: Text(message), dismissButton: .default(Text("OK")))
-//             }
+        
+        //        .alert("Error", isPresented: true?, actions: {}, message: "")
+        
     }
     
     func resetPassword(email: String) {
