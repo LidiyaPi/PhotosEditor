@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignInSwift
 
 struct LoginView: View {
     
@@ -13,6 +14,7 @@ struct LoginView: View {
     
     var body: some View {
         VStack(spacing: 16) {
+            
             TextField("Email", text: $viewModel.email)
                 .border(.primary)
                 .keyboardType(.emailAddress)
@@ -25,26 +27,38 @@ struct LoginView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
             
+            Button(action: {
+                viewModel.showPasswordRecovery()
+            }) {
+                HStack {
+                    Spacer()
+                    Text("Forgot password?")
+                }
+            }.padding(.horizontal)
+            
             Button("Login") {
                 viewModel.login()
                 print("Переходим на другой экран")
             }
+            .buttonStyle(.bordered)
             
-            Button("Login with Google") {
-            }
+            Text("or")
             
-            Button("Forgot password?") {
-                viewModel.showPasswordRecovery()
+            GoogleSignInButton {
+                AuthService.share.signInWithGoogle(presenting: getRootViewController()) { error in
+                    print("Error\(String(describing: error))")
+                }
             }
-            .padding()
+            .scenePadding(.horizontal)
+            
         }
-
+        
         .alert(item: $viewModel.errorMessage) { error in
-               Alert(title: Text(error.title), message: Text(error.message), dismissButton: .default(Text("OK")))
-           }
+            Alert(title: Text(error.title), message: Text(error.message), dismissButton: .default(Text("OK")))
+        }
     }
+    
 }
-
 
 
 #Preview {
