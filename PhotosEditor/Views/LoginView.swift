@@ -12,6 +12,7 @@ struct LoginView: View {
     
     @StateObject private var loginViewModel = LoginViewModel()
     @State private var showRegistrationView = false
+    @State private var isLoggedIn = false
     
     var body: some View {
         NavigationView {
@@ -31,8 +32,9 @@ struct LoginView: View {
                     ProgressView()
                 } else {
                     Button("Login") {
-                        loginViewModel.login()
-                        print("HOORAY")
+                        loginViewModel.login {
+                            isLoggedIn = true
+                        }
                     }
                     .buttonStyle(NewButtonStyle())
                     .padding()
@@ -57,12 +59,19 @@ struct LoginView: View {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 }
+                
+                NavigationLink(destination: GalleryView(), isActive: $loginViewModel.isLoggedIn) {
+                                  EmptyView()
+                              }
             }
             .padding()
             .navigationTitle("Login")
             .sheet(isPresented: $showRegistrationView) {
                 RegistrationView()
             }
+            .background(
+                           
+                        )
         }
     }
 }

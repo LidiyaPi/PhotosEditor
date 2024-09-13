@@ -17,7 +17,9 @@ struct PhotosEditorApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
+            if isSignIn {
+                GalleryView()
+            } else {
                 LoginView()
             }
         }

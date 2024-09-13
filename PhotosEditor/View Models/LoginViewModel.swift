@@ -16,8 +16,9 @@ class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
+    @Published var isLoggedIn: Bool = false
     
-    func login() {
+    func login(completion: @escaping () -> Void) {
            isLoading = true
            AuthService.shared.login(email: email, password: password) { result in
                DispatchQueue.main.async {
@@ -26,6 +27,8 @@ class LoginViewModel: ObservableObject {
                    case .success(let user):
                        print("User signed in: \(user.email)")
                        self.errorMessage = nil
+                       completion()
+                       self.isLoggedIn = true // Устанавливаем состояние входа в true
                    case .failure(let error):
                        self.errorMessage = error.localizedDescription
                    }
