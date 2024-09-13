@@ -12,19 +12,29 @@ class RegistrationViewModel: ObservableObject {
     
     @Published var email: String = ""
     @Published var password: String = ""
+    @Published var successMessage: String?
     @Published var errorMessage: String?
+    @Published var isLoading: Bool = false
     
     func register() {
-        guard isValidEmail(email) else {
-            errorMessage = "Invalid email format"
-            return
-        }
-        Auth.auth().createUser(withEmail: email, password: password) { Result, error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-            } else {
-                self.sendEmailVerification()
+        AuthService.shared.register(email: email, password: password) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(_):
+                    self.successMessage = "Регистрация прошла успешно"
+                    self.errorMessage = nil
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                }
             }
+        }
+    }
+    
+    private func sendEmailVerification(completion: @escaping (Error?) -> Void) {
+        Auth.auth().currentUser?.sendEmailVerification { error in
+            completion(error)
+            print(error?.localizedDescription as Any)
         }
     }
     
@@ -41,7 +51,6 @@ class RegistrationViewModel: ObservableObject {
             }
         }
     }
-    
 }
 
 

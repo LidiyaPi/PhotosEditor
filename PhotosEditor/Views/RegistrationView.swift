@@ -9,27 +9,49 @@ import SwiftUI
 
 struct RegistrationView: View {
     
-@StateObject private var viewModel = RegistrationViewModel()
+    @StateObject private var viewModel = RegistrationViewModel()
+    @Environment(\.presentationMode) var presentationMode
+    @State private var showAlert = false
     
     var body: some View {
         VStack {
             TextField("Email", text: $viewModel.email)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .keyboardType(.emailAddress)
+                .autocapitalization(.none)
                 .padding()
             
             SecureField("Password", text: $viewModel.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                              .padding()
+                .padding()
             
-            Button("Register") {
-                viewModel.register()
+            if viewModel.isLoading {
+                ProgressView()
+            } else {
+                Button("Register") {
+                    viewModel.register()
+                    showAlert = true
+                }
                 
             }
-            .padding(EdgeInsets())
         }
-//        .alert("Error", isPresented: true?, actions: {}, message: "")
+        .padding()
+        .navigationTitle("Register")
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Registration Status"),
+                message: Text(viewModel.successMessage?.description ?? viewModel.errorMessage ?? ""),
+                dismissButton: .default(Text("OK")) {
+                    if let successMessage = viewModel.successMessage {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                    viewModel.successMessage = nil
+                    viewModel.errorMessage = nil
+                }
+            )
+        }
     }
+    
 }
 
 #Preview {

@@ -10,34 +10,28 @@ import FirebaseAuth
 import FirebaseCore
 import GoogleSignIn
 
-struct AlertItem: Identifiable {
-    let id = UUID()
-    let title: String
-    let message: String
-}
-
 class LoginViewModel: ObservableObject {
     
     @Published var email: String = ""
     @Published var password: String = ""
-    @Published var errorMessage: AlertItem?
+    @Published var errorMessage: String?
     @Published var isLoading: Bool = false
     
     func login() {
-        guard isValidEmail(email) else {
-            errorMessage = AlertItem(title: "Error", message: "Invalid email format")
-            return
-        }
-        
-        isLoading = true
-        
-        Auth.auth().signIn(withEmail: email, password: password) { result,
-            error in
-            if let error = error {
-                self.errorMessage = AlertItem(title: "Error", message: error.localizedDescription)
-            }
-        }
-    }
+           isLoading = true
+           AuthService.shared.login(email: email, password: password) { result in
+               DispatchQueue.main.async {
+                   self.isLoading = false
+                   switch result {
+                   case .success(let user):
+                       print("User signed in: \(user.email)")
+                       self.errorMessage = nil
+                   case .failure(let error):
+                       self.errorMessage = error.localizedDescription
+                   }
+               }
+           }
+       }
     
     private func isValidEmail(_ email: String) -> Bool {
         let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -45,24 +39,6 @@ class LoginViewModel: ObservableObject {
         return emailTest.evaluate(with: email)
     }
     
-//    func signInWithGoogle() {
-//        GIDSignIn.sharedInstance.signIn(with: GIDConfiguration(clientID: FirebaseApp.app()?.options.clientID ?? "")) { user, error in
-//                if let error = error {
-//                    self.errorMessage = error.localizedDescription
-//                    return
-//                }
-//                
-//                if let user = user {
-//                    let credential = GoogleAuthProvider.credential(withIDToken: user.authentication.idToken, accessToken: user.authentication.accessToken)
-//                    Auth.auth().signIn(with: credential) { authResult, error in
-//                        if let error = error {
-//                            self.errorMessage = error.localizedDescription
-//                        }
-//                        // Логика после успешного входа
-//                    }
-//                }
-//            }
-//        }
     
     func showPasswordRecovery() {
         
