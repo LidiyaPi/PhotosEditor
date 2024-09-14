@@ -11,7 +11,8 @@ import PencilKit
 import CoreImage
 import CoreImage.CIFilterBuiltins
 
-class GalleryViewModel: ObservableObject {
+@MainActor
+final class GalleryViewModel: ObservableObject {
     @Published var selectedImage: Image?
     @Published var isShowingImagePicker = false
     @Published var sourceType: UIImagePickerController.SourceType = .photoLibrary
@@ -39,9 +40,9 @@ class GalleryViewModel: ObservableObject {
             return
         }
         
-        let filter = CIFilter.sepiaTone() // Пример фильтра
+        let filter = CIFilter.sepiaTone()
         filter.inputImage = ciImage
-        filter.intensity = 0.5
+//        filter.intensity = 0.5
         
         // Получаем выходное изображение
         if let outputImage = filter.outputImage, let cgImage = CIContext().createCGImage(outputImage, from: outputImage.extent) {
@@ -52,13 +53,11 @@ class GalleryViewModel: ObservableObject {
         }
     }
     
-    // Вспомогательная функция для преобразования Image в UIImage
     private func toUIImage(swiftUIImage: Image) -> UIImage? {
         let controller = UIHostingController(rootView: swiftUIImage)
         let view = controller.view
         
-        // Устанавливаем размеры представления
-        let targetSize = CGSize(width: 300, height: 300) // Укажите целевой размер
+        let targetSize = CGSize(width: 300, height: 300)
         view?.bounds = CGRect(origin: .zero, size: targetSize)
         view?.sizeToFit()
         

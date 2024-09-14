@@ -14,33 +14,41 @@ struct ForgotPasswordView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
-            Text("Восстановление пароля")
-                .font(.title2).bold()
-                .padding()
+        ZStack {
             
-            TextField("Email", text: $viewModel.email)
-                .customTextFieldStyle()
-                .keyboardType(.emailAddress)
-                .autocapitalization(.none)
-                .padding()
+            CloseButton(action: {
+                presentationMode.wrappedValue.dismiss()
+            })
             
-            Button("Отправить ссылку на восстановление") {
-                viewModel.resetPassword(email: viewModel.email)
-            }
-        }
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(
-                title: Text("Info"),
-                message: Text(viewModel.successMessage?.description ?? viewModel.errorMessage ?? ""),
-                dismissButton: .default(Text("OK")) {
-                    if viewModel.successMessage != nil {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    //                    successMessage = nil
-                    //                    errorMessage = nil
+            VStack {
+                Text("Восстановление пароля")
+                    .font(.title2).bold()
+                    .foregroundStyle(.blue)
+                    .padding()
+                
+                TextField("Email", text: $viewModel.email)
+                    .customTextFieldStyle()
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
+                    .padding()
+                
+                Button("Отправить ссылку на восстановление") {
+                    viewModel.resetPassword(email: viewModel.email)
                 }
-            )
+            }
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text("Информация"),
+                    message: Text(viewModel.successMessage?.description ?? viewModel.errorMessage ?? ""),
+                    dismissButton: .default(Text("OK")) {
+                        if viewModel.successMessage != nil {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        //                    successMessage = nil
+                        //                    errorMessage = nil
+                    }
+                )
+            }
         }
     }
 }

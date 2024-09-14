@@ -37,6 +37,8 @@
 		50AB5B7C2C92A4EF0056A82F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B7B2C92A4EF0056A82F /* User.swift */; };
 		50AB5B822C92A7770056A82F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50AB5B812C92A7770056A82F /* LoginViewModel.swift */; };
 		50EF80602C95A4D1006388D3 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF805F2C95A4D1006388D3 /* ForgotPasswordViewModel.swift */; };
+		50EF80622C95C1EF006388D3 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF80612C95C1EF006388D3 /* TextEditorView.swift */; };
+		50EF80642C95CA04006388D3 /* CloseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EF80632C95CA04006388D3 /* CloseButtonView.swift */; };
 		50F5FCCC2C9338A300AE068B /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F5FCCB2C9338A300AE068B /* ButtonModifier.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,8 @@
 		50AB5B7B2C92A4EF0056A82F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		50AB5B812C92A7770056A82F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		50EF805F2C95A4D1006388D3 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
+		50EF80612C95C1EF006388D3 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
+		50EF80632C95CA04006388D3 /* CloseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButtonView.swift; sourceTree = "<group>"; };
 		50F5FCCB2C9338A300AE068B /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				507087222C94924000FA9045 /* GalleryView.swift */,
+				50EF80612C95C1EF006388D3 /* TextEditorView.swift */,
 				507087242C94929600FA9045 /* GalleryViewModel.swift */,
 			);
 			path = Gallery;
@@ -126,12 +131,11 @@
 		5072CEB42C93045C00238016 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				50EF80632C95CA04006388D3 /* CloseButtonView.swift */,
 				5072CEB52C93048500238016 /* AppDelegate.swift */,
 				506C2D252C95608E0006CD4B /* CustomTextField.swift */,
 				50F5FCCB2C9338A300AE068B /* ButtonModifier.swift */,
 				503F8CBF2C93144E007FBA14 /* ExtensionView.swift */,
-				50AB5B362C91BD310056A82F /* Preview Content */,
-				50AB5B342C91BD310056A82F /* Assets.xcassets */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -172,6 +176,7 @@
 				506C2D282C959EA70006CD4B /* Gallery */,
 				50AB5B302C91BD2F0056A82F /* PhotosEditorApp.swift */,
 				50AB5B4A2C928B000056A82F /* Services */,
+				50AB5B362C91BD310056A82F /* Preview Content */,
 				5072CEB42C93045C00238016 /* Helpers */,
 			);
 			path = PhotosEditor;
@@ -180,6 +185,7 @@
 		50AB5B362C91BD310056A82F /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				50AB5B342C91BD310056A82F /* Assets.xcassets */,
 				50AB5B372C91BD310056A82F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -300,12 +306,14 @@
 				507087212C93ECAF00FA9045 /* AuthService.swift in Sources */,
 				50AB5B312C91BD2F0056A82F /* PhotosEditorApp.swift in Sources */,
 				503F8CC02C93144E007FBA14 /* ExtensionView.swift in Sources */,
+				50EF80642C95CA04006388D3 /* CloseButtonView.swift in Sources */,
 				506C2D262C95608E0006CD4B /* CustomTextField.swift in Sources */,
 				50AB5B822C92A7770056A82F /* LoginViewModel.swift in Sources */,
 				5072CEB62C93048500238016 /* AppDelegate.swift in Sources */,
 				50EF80602C95A4D1006388D3 /* ForgotPasswordViewModel.swift in Sources */,
 				507087272C9492CC00FA9045 /* ImagePicker.swift in Sources */,
 				50F5FCCC2C9338A300AE068B /* ButtonModifier.swift in Sources */,
+				50EF80622C95C1EF006388D3 /* TextEditorView.swift in Sources */,
 				506C2D2D2C959F8F0006CD4B /* LoginView.swift in Sources */,
 				5072CEAF2C92CEEC00238016 /* RegistrationView.swift in Sources */,
 			);
@@ -440,11 +448,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotosEditor/Helpers/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PhotosEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = MFZ792P5NV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosEditor/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Приложению требуется доступ к камере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -470,11 +479,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"PhotosEditor/Helpers/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"PhotosEditor/Preview Content\"";
 				DEVELOPMENT_TEAM = MFZ792P5NV;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotosEditor/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Приложению требуется доступ к камере";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

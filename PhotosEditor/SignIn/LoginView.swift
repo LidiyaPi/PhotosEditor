@@ -10,77 +10,76 @@ import GoogleSignInSwift
 
 struct LoginView: View {
     
-    @StateObject private var loginViewModel = LoginViewModel()
-    @State private var showRegistrationView = false
-    @State private var isLoggedIn = false
-    @State private var showForgotPasswordView: Bool = false
+    @StateObject private var viewModel = LoginViewModel()
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 16) {
+            VStack {
                 
-                TextField("Email", text: $loginViewModel.email)
-                    .customTextFieldStyle()
-                    .keyboardType(.emailAddress)
-                    .autocapitalization(.none)
+                Spacer()
                 
-                SecureField("Password", text: $loginViewModel.password)
-                    .customTextFieldStyle()
-                
-                Button("Forgot password") {
-                    showForgotPasswordView.toggle()
-                }
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                
-                if loginViewModel.isLoading {
-                    ProgressView()
-                } else {
-                    Button("Login") {
-                        loginViewModel.login {
-                            isLoggedIn = true
+                VStack(spacing: 24) {
+                    
+                    TextField("Email", text: $viewModel.email)
+                        .customTextFieldStyle()
+                        .keyboardType(.emailAddress)
+                        .autocapitalization(.none)
+                    
+                    SecureField("Password", text: $viewModel.password)
+                        .customTextFieldStyle()
+                    
+                    Button("Восстановить пароль") {
+                        viewModel.showForgotPasswordView.toggle()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    if viewModel.isLoading {
+                        ProgressView()
+                    } else {
+                        Button("Войти") {
+                            viewModel.login {
+                                viewModel.isLoggIn.toggle()
+                            }
+                        }
+                        .customButtonStyle()
+                        .foregroundColor(.white)
+                        .fontWeight(.bold)
+                    }
+                    
+                    GoogleSignInButton {
+                        GoogleSignInService.share.signInWithGoogle(presenting: getRootViewController()) { error in
+                            print("Error\(String(describing: error))")
                         }
                     }
-                    .customButtonStyle()
-                }
-                
-                Text("or")
-                
-                GoogleSignInButton {
-                    GoogleSignInService.share.signInWithGoogle(presenting: getRootViewController()) { error in
-                        print("Error\(String(describing: error))")
+                    
+                    if let errorMessage = viewModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    }
+                    
+                    NavigationLink(destination: GalleryView(), isActive: $viewModel.isLoggIn) {
+                        EmptyView()
                     }
                 }
+                .padding()
+                .sheet(isPresented: $viewModel.showForgotPasswordView) {
+                    ForgotPasswordView()
+                }
+                .sheet(isPresented: $viewModel.showRegistrationView) {
+                    RegistrationView()
+                }
                 
-                Button("Don't have an account?") {
-                    showRegistrationView.toggle()
+                Spacer()
+                
+                Button("Зарегестрироваться") {
+                    viewModel.showRegistrationView.toggle()
                 }
                 .foregroundColor(.blue)
                 .padding()
-                
-                if let errorMessage = loginViewModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                }
-                
-                NavigationLink(destination: GalleryView(), isActive: $loginViewModel.isLoggedIn) {
-                    EmptyView()
-                }
-                            }
-            .padding()
-            .sheet(isPresented: $showForgotPasswordView) {
-                     ForgotPasswordView()
-                 }
-            .sheet(isPresented: $showRegistrationView) {
-                RegistrationView()
             }
-            .background(
-                
-            )
         }
     }
 }
-
-
 
 #Preview {
     LoginView()

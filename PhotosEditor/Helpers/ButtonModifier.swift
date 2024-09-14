@@ -15,16 +15,11 @@ struct ButtonModifier: ButtonStyle {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 5)
+                    .fill(Color(uiColor: .systemBlue))
                     .stroke(Color.gray, lineWidth: 1)
+                    .shadow(color: Color.gray, radius: 2, x: 0, y: 2)
             )
-            .background(
-                RoundedRectangle(cornerRadius: 5)
-                    .fill(Color.clear)
-                    .shadow(color: Color.gray, radius: 2, x: 0, y: 2) 
-            )
-            .cornerRadius(5)
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
-            .shadow(radius: 1)
             .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
         
     }

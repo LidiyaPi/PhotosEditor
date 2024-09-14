@@ -8,20 +8,23 @@
 import Combine
 import FirebaseAuth
 
-class RegistrationViewModel: ObservableObject {
+@MainActor
+final class RegistrationViewModel: ObservableObject {
     
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var successMessage: String?
     @Published var errorMessage: String?
     @Published var isLoading: Bool = false
+    @Published var showAlert = false
     
     func register() {
+        Task {
         AuthService.shared.register(email: email, password: password) { result in
-            DispatchQueue.main.async {
                 self.isLoading = false
+                self.showAlert = true
                 switch result {
-                case .success(_):
+                case .success:
                     self.successMessage = "Регистрация прошла успешно"
                     self.errorMessage = nil
                 case .failure(let error):
@@ -36,12 +39,6 @@ class RegistrationViewModel: ObservableObject {
             completion(error)
             print(error?.localizedDescription as Any)
         }
-    }
-    
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}"
-        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
     }
     
     private func sendEmailVerification() {

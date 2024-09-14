@@ -8,10 +8,8 @@
 import Foundation
 import FirebaseAuth
 
-
-
 @MainActor
-class ForgotPasswordViewModel:ObservableObject {
+final class ForgotPasswordViewModel:ObservableObject {
     
     @Published var email: String = ""
     @Published var showAlert: Bool = false
