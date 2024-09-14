@@ -42,7 +42,7 @@ struct RegistrationView: View {
                 title: Text("Registration Status"),
                 message: Text(viewModel.successMessage?.description ?? viewModel.errorMessage ?? ""),
                 dismissButton: .default(Text("OK")) {
-                    if let successMessage = viewModel.successMessage {
+                    if viewModel.successMessage != nil {
                         presentationMode.wrappedValue.dismiss()
                     }
                     viewModel.successMessage = nil

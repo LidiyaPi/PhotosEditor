@@ -28,7 +28,7 @@ class LoginViewModel: ObservableObject {
                        print("User signed in: \(user.email)")
                        self.errorMessage = nil
                        completion()
-                       self.isLoggedIn = true // Устанавливаем состояние входа в true
+                       self.isLoggedIn = true 
                    case .failure(let error):
                        self.errorMessage = error.localizedDescription
                    }

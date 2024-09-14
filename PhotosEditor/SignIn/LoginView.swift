@@ -13,20 +13,24 @@ struct LoginView: View {
     @StateObject private var loginViewModel = LoginViewModel()
     @State private var showRegistrationView = false
     @State private var isLoggedIn = false
+    @State private var showForgotPasswordView: Bool = false
     
     var body: some View {
         NavigationView {
             VStack(spacing: 16) {
                 
                 TextField("Email", text: $loginViewModel.email)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .customTextFieldStyle()
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
-                    .padding()
                 
                 SecureField("Password", text: $loginViewModel.password)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                    .customTextFieldStyle()
+                
+                Button("Forgot password") {
+                    showForgotPasswordView.toggle()
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 if loginViewModel.isLoading {
                     ProgressView()
@@ -36,8 +40,7 @@ struct LoginView: View {
                             isLoggedIn = true
                         }
                     }
-                    .buttonStyle(NewButtonStyle())
-                    .padding()
+                    .customButtonStyle()
                 }
                 
                 Text("or")
@@ -47,9 +50,8 @@ struct LoginView: View {
                         print("Error\(String(describing: error))")
                     }
                 }
-                .scenePadding(.horizontal)
                 
-                Button("Don't have an account? Register here") {
+                Button("Don't have an account?") {
                     showRegistrationView.toggle()
                 }
                 .foregroundColor(.blue)
@@ -61,17 +63,19 @@ struct LoginView: View {
                 }
                 
                 NavigationLink(destination: GalleryView(), isActive: $loginViewModel.isLoggedIn) {
-                                  EmptyView()
-                              }
-            }
+                    EmptyView()
+                }
+                            }
             .padding()
-            .navigationTitle("Login")
+            .sheet(isPresented: $showForgotPasswordView) {
+                     ForgotPasswordView()
+                 }
             .sheet(isPresented: $showRegistrationView) {
                 RegistrationView()
             }
             .background(
-                           
-                        )
+                
+            )
         }
     }
 }
